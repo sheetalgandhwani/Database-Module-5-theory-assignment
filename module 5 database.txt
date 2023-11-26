@@ -1,0 +1,314 @@
+                                          
+                                       MODULE:5(Database)
+
+--------------------------------------------------------------------------------------------------------------- Q.1   What do you understand by Database?
+Ans:- A database is an organized collection of structured information,or data, typically stored electronically
+       in a computer system.
+--------------------------------------------------------------------------------------------------------------
+
+
+Q.2   What is  Normalization?
+
+Ans:  Normalization:->Normalization is the process of organizing the data in a database.
+       
+                      (i)It is used to minimize the redundancy from a relation or set of relations.        
+                      (ii)It divides big table into small tables.
+--------------------------------------------------------------------------------------------------------------
+
+
+Q.3  What is difference between DBMS and RDBMS? 
+
+Ans:                    DBMS                                            RDBMS
+--------------------------------------------------------------------------------------------------------------
+                                                      |
+   1. DBMS stands for DataBase Managemen stystem.     | 1.RDBMS stands for Relational DataBase Management
+                                                      |    System.
+   2. In DBMS data are store as a file.               | 2. In RDBMS data are store in a tabular form.
+   3. It does not support client server architecture. | 3. It support client server architecture.
+   4. Normalization is not available in DBMS.         | 4. Normalization is available in RDBMS.
+   5. It allows one user at a time.                   | 5. It allows more than one user at a time.
+   6.Heirarchical arrangement of data.                | 6. Stores data in the form of rows and column.
+   7.Data fetching is slower for the large amount     | 7. Data fetching is fast because of relational
+           of data.                                   |      approach.
+   8.It does not support ACID(Atomicity,              | 8. It support ACID property.
+      Consistency, Isolation,  Durability) property.  |
+   9.Data redundancy problem exist.                   | 9. Data redundancy problem does not exist.
+   10. e.g.- XML,Microsoft Access etc.                | 10 .e.g.- mysql,sql server,oracle etc.
+--------------------------------------------------------------------------------------------------------------
+
+Q.4 What do you understand by Data Redundancy?
+
+Ans:  Data redundancy is when multiple  copies of the same information are stored in more than one place at a
+       time and is a common occurrence in many businesses.
+-------------------------------------------------------------------------------------------------------------
+ 
+
+Q.5 What is DDL Interpreter?
+Ans:  DDL Interpreter:-> It interprets the DDL(Data Definition Language) statements and stores the record
+                          in a data dictionary(in a table containing meta-data(data about data)).
+     DDL statements-   CREATE,DROP,TRUNCATE,ALTER,RENAME.
+
+--------------------------------------------------------------------------------------------------------------
+ 
+
+Q.6 What is DML compiler in SQL?
+
+Ans: DML compiler:-> It translates DML(Data Manipulation Language) statements in a query language within 
+                      low level instructions understandable through the query evaluation engine.
+     DML statements-  INSERT, UPDATE, DELETE.
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Q.7  What is SQL key constraints writing an example of SQL key constraints? 
+
+Ans:  SQL constraints are used to specify rules for the data in a table.
+      Types of key constraints: 
+                     
+             1. A PRIMARY KEY is a field which can uniquely identify each row in a table.
+             2. NOT NULL constraints tells that we cannot store a null value in a column.
+             3. A FOREIGN KEY is a field which can uniquely identify each row  in another table.    
+             4. CHECK constraint helps to validate the value of a column to meet a particular condition. 
+             5. DEFAULT constraints specifies a default value for the column when no value is specified by 
+                    the user.
+             6.UNIQUE constraints tells that the values in the column must be unique.
+
+    EXAMPLE:-> CREATE TABLE Persons (ID int NOT NULL PRIMARY KEY,
+                LastName varchar(255) NOT NULL,
+                FirstName varchar(255)NOT NULL,
+                Age int CHECK(Age>=18),
+                City varchar(255) DEFAULT 'Sandnes',SSN int(30)UNIQUE,
+                FOREIGN KEY(ID) REFERENCES employee(ID));
+                          
+                 
+
+
+
+--------------------------------------------------------------------------------------------------------------
+Q.8  What is EF Cod rule of RDBMS System?
+
+Ans:    Dr E.F.Codd, also known to the world as the ‘Father of Database Management Systems’ had propounded 12           
+         rules  which are in-fact 13 in number. The rules are numbered from zero to twelve. According to him, 
+          a DBMS is fully relational if it abides by all his twelve rules.
+        
+         Rules are given below:
+
+
+ 
+              Rule 0-  Foundation rule
+              Rule 1-  Rule of Information
+              Rule 2-  Rule of Guaranteed access 
+              Rule 3-  Rule of Systematic null  value support
+              Rule 4-  Rule of Active  and  online catalog
+              Rule 5-  Rule of Comprehensive data sub-language rule
+              Rule 6-  Rule of updating views
+              Rule 7-  Rule of set level insertion,update and deletion
+              Rule 8-  Rule of physical data independence
+              Rule 9-  Rule of logical data independence
+	      Rule 10- Rule of integrity independence
+              Rule 11- Rule of distribution independence
+              Rule 12- Rule of non-subversion
+---------------------------------------------------------------------------------------------------
+
+ 
+Q.9 What is save point? How to create a save point write Query?
+
+Ans:  A save point is a point in atransaction in which we can roll the transaction back to a certain point 
+      without rolling back the entire transaction.
+
+
+
+CREATE TABLE student(ID INT, Name VARCHAR(20),
+ Percentage INT, Location VARCHAR(20), DateOfBirth DATE);
+
+Insert row:
+======================
+
+INSERT INTO student(ID, Name, Percentage, Location, DateOfBirth) 
+  VALUES(1, "Manthan Koli", 79, "Delhi", "2003-08-20"),
+  (2, "Dev Dixit", 75, "Pune", "1999-06-17"), 
+  (3, "Aakash Deshmukh", 87, "Mumbai", "1997-09-12"),
+  (4, "Aaryan Jaiswal", 90, "Chennai", "2005-10-02"), 
+  (5, "Rahul Khanna", 92, "Ambala", "1996-03-04"), 
+  (6, "Pankaj Deshmukh", 67, "Kanpur", "2000-02-02"), 
+  (7, "Gaurav Kumar", 84, "Chandigarh", "1998-07-06"),
+  (8, "Sanket Jain", 61, "Shimla", "1990-09-08"), 
+  (9, "Sahil Wagh", 90, "Kolkata", "1968-04-03");  
+
+Select :
+===========================
+
+SELECT *FROM student; 
+
+To use the TCL commands in SQL, we first need to initiate the transaction by 
+using the BEGIN / START TRANSACTION command.
+
+
+START TRANSACTION;
+
+
+We will save our initiated transaction using the SAVEPOINT command along with some 
+specific names of this savepoint.
+
+SAVEPOINT ini;  
+
+we decided to insert a new record with an ID of 10 into the existing student table.
+
+INSERT INTO student VALUES (10, "Saurabh Singh", 54, "Kashmir", "1989-01-06"); 
+
+SELECT query to verify that the new record with ID as ten is inserted successfully.
+
+SELECT *FROM student;
+
+INSERT INTO student VALUES (10, "Saurabh Singh", 54, "Kashmir", "1989-01-06"); 
+
+SAVEPOINT upd;
+
+DELETE FROM student WHERE ID= 6;
+ 
+check whether id=6 is delete:
+================================
+ 
+SELECT *FROM student;    
+
+
+To save the transaction with this removed record, we will create a new savepoint.
+
+SAVEPOINT del; 
+
+SELECT *FROM student;
+
+---------------------------------------------------------------------------------------------   
+
+Q.10 What is trigger and how to create a Trigger in SQL? 
+
+     A trigger is a set of actions that are run automatically when a specified
+ change operation (SQL INSERT, UPDATE, or DELETE statement) is performed on a
+ specified table. Triggers are useful for tasks such as enforcing business rules,
+ validating input data, and keeping an audit trail.
+
+=========================================================================================
+The CREATE TRIGGER statement creates a new trigger. 
+Here is the basic syntax of the CREATE TRIGGER statement:
+
+Syntax :
+
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} { INSERT | UPDATE| DELETE }
+ON table_name FOR EACH ROW
+trigger_body;
+
+
+In this syntax:
+
+1) First, specify the name of the trigger that you want to create after the CREATE TRIGGER keywords. 
+Note that the trigger name must be unique within a database.
+
+2) Next, specify the trigger action time which can be either BEFORE or AFTER which indicates that the 
+trigger is invoked before or after each row is modified.
+
+3) Then, specify the operation that activates the trigger, which can be INSERT, UPDATE, or DELETE.
+
+4) After that, specify the name of the table to which the trigger belongs after the ON keyword.
+
+Finally, specify the statement to execute when the trigger activates. If you want to execute multiple statements, you use the BEGIN END compound statement.
+
+=========================================================================================
+MySQL trigger examples
+=========================================================================================
+
+1-
+
+create table employees(
+  employeeNumber int PRIMARY KEY AUTO_INCREMENT NOT Null,
+  lname varchar(20) NOT null,
+  fname varchar(20) NOT null,
+  email varchar(20) NOT null
+);
+------------------------------------------
+2-
+ 
+insert into employees(fname,lname,email) values ("hitesh","gajeria","h@gmail.com"),
+("jitesh","kajeria","j@gmail.com"),
+("mitesh","dajeria","m@gmail.com"),
+("ritesh","rajeria","r@gmail.com"),
+("nitesh","tajeria","n@gmail.com");
+
+---------------------------------------------
+First, create a new table named employees_audit to keep the changes to the employees table:
+
+CREATE TABLE employees_audit (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employeeNumber INT NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    changedate DATETIME DEFAULT NULL,
+    action VARCHAR(50) DEFAULT NULL
+);
+------------------------------------------------
+Next, create a BEFORE UPDATE trigger that is invoked before a change is made to the employees table.
+
+-
+
+CREATE TRIGGER before_employees_insert 
+    BEFORE INSERT ON employees
+    FOR EACH ROW 
+ INSERT INTO employees_audit
+ SET action = 'insert',
+     employeeNumber = OLD.employeeNumber,
+     lastname = OLD.lname,
+     changedate = NOW();
+
+
+Inside the body of the trigger, we used the OLD keyword to access values of the columns employeeNumber and lastname of the row affected by the trigger.
+
+--------------------------------------------------
+
+Then, show all triggers in the current database by using the SHOW TRIGGERS statement:
+
+-
+
+SHOW TRIGGERS;
+
+--------------------------------------------------
+After that, update a row in the employees table:
+
+-
+
+UPDATE employees 
+SET 
+    lname = 'kavya'
+WHERE
+   employeeNumber = 1;
+
+
+--------------------------------------------
+
+Finally, query the employees_audit table to check if the trigger was fired by the UPDATE statement:
+
+-
+
+SELECT * FROM employees_audit;
+
+
+As you see clearly from the output, the trigger was automatically invoked and inserted a new row into the employees_audit table.
+
+=============|=================|============|=================|================|===============|=============|
+
+
+
+    
+    
+
+         
+     
+                     
+             
+     
+
+                       
+
+     
+
+          
+      
+
